@@ -1,21 +1,25 @@
-import { QRCodeCanvas } from 'qrcode.react'
+import { QRCodeSVG } from 'qrcode.react'
 
 type TableQRCodeProps = {
     tableNumber: number
 }
 
+const SITE_URL =
+    import.meta.env.VITE_SITE_URL ||
+    window.location.origin
+
 function TableQRCode({ tableNumber }: TableQRCodeProps) {
-    const tableUrl = `http://192.168.1.7:5173/table/${tableNumber}`
+    const tableUrl = `${SITE_URL}/table/${tableNumber}`
 
     return (
-        <div className="card qr-card">
-            <h3>🪑 Table {tableNumber}</h3>
+        <div>
+            <h2>Table {tableNumber}</h2>
 
-            <QRCodeCanvas
+            <QRCodeSVG
                 value={tableUrl}
-                size={200}
-                bgColor="#0f1528"
-                fgColor="#e8eaf0"
+                size={220}
+                level="H"
+                includeMargin
             />
 
             <p>{tableUrl}</p>
